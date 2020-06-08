@@ -1,0 +1,7 @@
+apiVersion: v2
+name: acme-cluster-issuer
+description: A Helm chart for ACME ClusterIssuer
+
+type: application
+
+version: 0.1.1

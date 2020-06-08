@@ -1,0 +1,16 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: {{ include "acme-cluster-issuer.fullname" . }}
+  labels:
+    {{- include "acme-cluster-issuer.labels" . | nindent 4 }}
+spec:
+  acme:
+    email: {{ .Values.acme.email }}
+    server: {{ .Values.acme.server }}
+    privateKeySecretRef:
+      name: {{ include "acme-cluster-issuer.fullname" . }}-account-key
+    solvers:
+      - http01:
+          ingress:
+            class: {{ .Values.ingress.class }}
